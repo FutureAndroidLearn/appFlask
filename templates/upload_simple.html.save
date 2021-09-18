@@ -49,9 +49,7 @@
             </p>
         </div>
 
-    </form>
 
-
-    <form method="get" action="/upload">
-  	 <button type="submit">Download!</button>
-    </form>
+    <form method="get" action="file.doc">
+   <button type="submit">Download!</button>
+</form>

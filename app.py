@@ -26,6 +26,11 @@ def allowed_file(filename):
 def upload_form():
     return render_template('upload_simple.html')
 
+@app.route('/upload', methods=['GET'])
+def download_file():
+    if request.method == 'GET':
+        return send_file(f"Output.xlsx",as_attachment=True,mimetype="xlsx")
+
 ## on a POST request of data 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -68,5 +73,5 @@ def upload_file():
 
 
 if __name__ == "__main__":
-    print('to upload files navigate to http://127.0.0.1:4000/upload')
-    app.run(host='127.0.0.1',port=4000,debug=True,threaded=True)
+    print('to upload files navigate to http://0.0.0.0:4000/upload')
+    app.run(host='0.0.0.0',port=4000,debug=True,threaded=True)

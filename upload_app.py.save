@@ -29,13 +29,6 @@ def upload_form():
     return render_template('upload.html')
 
 
-## on GET request of data
-@app.route('/download')
-def download_file():
-    if request.method =='GET':
-       print('Hello')
-
-
 ## on a POST request of data 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -72,6 +65,12 @@ def upload_file():
         return redirect('/upload')
 
 
+@app.route('/download', methods=['GET'])
+def download_file():
+    if request.method == 'GET'
+ 
+
+
 
 ## what have I updated? Return a list of updated files
 @app.route('/uploaded/<upload_id>', methods=['GET','POST'])
@@ -94,3 +93,4 @@ if __name__ == "__main__":
     print('to upload files navigate to http://127.0.0.1:4000/upload')
     # lets run this on localhost port 4000
     app.run(host='127.0.0.1',port=4000,debug=True,threaded=True)
+

@@ -9,6 +9,6 @@ app_key = 'test'
 # full path destination for our upload files
 upload_dest = os.path.join(os.getcwd(), 'uploads_folder')
 # list of allowed allowed extensions
-extensions = set(['txt', 'pdf', 'image/png', 'image/tiff','image/gtiff'])
+extensions = set(['txt', 'pdf', 'image/png', 'image/tiff','image/gtiff','xls','xlsx'])
 #text/html 
 db_loc = os.path.join(os.getcwd(), 'user_cred.db')
