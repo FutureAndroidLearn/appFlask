@@ -26,7 +26,7 @@ def allowed_file(filename):
 def upload_form():
     return render_template('upload_simple.html')
 
-@app.route('/upload', methods=['GET'])
+@app.route('/download', methods=['GET'])
 def download_file():
     if request.method == 'GET':
         return render_template('test.html')
