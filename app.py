@@ -90,7 +90,7 @@ def file_process():
                     break
 
     # Guardo el archivo
-    wb_plantilla.save(filename='/uploads_folder/Informe.xlsx')
+    wb_plantilla.save(filename='/home/ubuntu/appFlask/uploads_folder/Informe.xlsx')
 
 @app.route('/download', methods=['GET'])
 def download_file():
