@@ -138,14 +138,15 @@ def upload_file():
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
                 print(filename)
-                if (filename != 'bancoNación.xlsx') or (filename != 'difCambioCta67.xlsx') or \
-                        (filename != 'difCambioCta77.xlsx'):
-                    flash('No files found, try again.')
-                    print('if')
-                    return redirect(request.url)
+                if (filename != 'bancoNación.xlsx'):
+                    file.save(os.path.join(upload_dest, filename))
+                elif (filename != 'difCambioCta67.xlsx'):
+                    file.save(os.path.join(upload_dest, filename))
+                elif (filename != 'difCambioCta77.xlsx'):
+                    file.save(os.path.join(upload_dest, filename))
                 else:
-                    print('else')
-                    file.save(os.path.join( upload_dest, filename))
+                    flash('Nombre inavlido')
+                    return redirect('/upload')
         flash('Files uploaded')
         return redirect('/upload')
 
