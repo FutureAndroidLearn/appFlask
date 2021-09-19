@@ -35,12 +35,12 @@ def download_file():
         #TODO: Ejecutar el algoritmo
 
         # Archivos de Excel desde donde extraeran los datos
-        odoo_bn = 'uploads_folder/bancoNacion.xlsx'
-        odoo_dc67 = 'uploads_folder/difCambioCta67.xlsx'
-        odoo_dc77 = 'uploads_folder/difCambioCta77.xlsx'
+        odoo_bn = '/uploads_folder/bancoNacion.xlsx'
+        odoo_dc67 = '/uploads_folder/difCambioCta67.xlsx'
+        odoo_dc77 = '/uploads_folder/difCambioCta77.xlsx'
 
         # Archivo con el formato de la plantilla de salida
-        plantilla = 'uploads_folder/plantilla.xlsx'
+        plantilla = '/uploads_folder/plantilla.xlsx'
 
         wb_odoo_bn = openpyxl.load_workbook(odoo_bn)
         wb_odoo_dc67 = openpyxl.load_workbook(odoo_dc67)
