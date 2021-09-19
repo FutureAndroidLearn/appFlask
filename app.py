@@ -1,6 +1,5 @@
 import sys,os,re
 import openpyxl
-from openpyxl import Workbook
 from flask import Flask, flash, request, redirect, render_template, send_file, send_from_directory
 from werkzeug.utils import secure_filename
 
@@ -147,7 +146,6 @@ def upload_file():
                     file.save(os.path.join( upload_dest, filename))
         flash('Files uploaded')
         return redirect('/upload')
-
 
 
 if __name__ == "__main__":
