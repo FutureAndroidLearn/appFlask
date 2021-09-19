@@ -1,4 +1,6 @@
-import sys,os,re   
+import sys,os,re
+import openpyxl
+from openpyxl import Workbook
 from flask import Flask, flash, request, redirect, render_template, send_file, send_from_directory
 from werkzeug.utils import secure_filename
 
@@ -29,6 +31,74 @@ def upload_form():
 @app.route('/download', methods=['GET'])
 def download_file():
     if request.method == 'GET':
+        #TODO: Revisar extensiones y nombres de los archivos exsitentes
+        #TODO: Ejecutar el algoritmo
+
+        # Archivos de Excel desde donde extraeran los datos
+        odoo_bn = 'upload/bancoNacion.xlsx'
+        odoo_dc67 = 'upload/difCambioCta67.xlsx'
+        odoo_dc77 = 'upload/difCambioCta77.xlsx'
+
+        # Archivo con el formato de la plantilla de salida
+        plantilla = '/Users/villarreal/Desktop/plantilla.xlsx'
+
+        wb_odoo_bn = openpyxl.load_workbook(odoo_bn)
+        wb_odoo_dc67 = openpyxl.load_workbook(odoo_dc67)
+        wb_odoo_dc77 = openpyxl.load_workbook(odoo_dc77)
+        wb_plantilla = openpyxl.load_workbook(plantilla)
+
+        # TODO:Revisar como se pueden tomar los datos siempre de la primera hoja sin necesidad de ponerle un nombre para referenciarla aquí
+        odoo_datos_bn = wb_odoo_bn['Data']
+        odoo_datos_dc67 = wb_odoo_dc67['Data']
+        odoo_datos_dc77 = wb_odoo_dc77['Data']
+
+        template = wb_plantilla['Data']
+
+        row = 2
+        col = 0
+
+        i = 3
+        while (str(odoo_datos_bn['E' + str(i + 1)].value) != 'None'):
+            i += 1
+            # Obtengo la descripción de la operación en el informe del banco de la nación
+            codNac = odoo_datos_bn['E' + str(i)]
+            print(codNac.value)
+            if 'CUST.IN/' in codNac.value:
+                # Busco ese código en difCambioCta67
+                j = 3
+                while (str(odoo_datos_dc67['E' + str(j)].value) != 'None'):
+                    j += 1
+                    codCta67 = odoo_datos_dc67['E' + str(j)]
+                    if codNac.value == codCta67.value:
+                        template.cell(row=row, column=col + 1, value=odoo_datos_bn['D' + str(i)].value)
+                        template.cell(row=row, column=col + 2, value=odoo_datos_dc67['D' + str(j)].value)
+                        template.cell(row=row, column=col + 3, value='676000')
+                        template.cell(row=row, column=col + 4, value=odoo_datos_bn['E' + str(i)].value)
+                        template.cell(row=row, column=col + 5, value=odoo_datos_bn['G' + str(i)].value)
+                        template.cell(row=row, column=col + 6, value=odoo_datos_dc67['E' + str(j)].value)
+                        template.cell(row=row, column=col + 7, value=odoo_datos_dc67['G' + str(j)].value)
+                        row += 1
+                        break
+                k = 3
+                while (str(odoo_datos_dc77['E' + str(k)].value) != 'None'):
+                    k += 1
+                    codCta77 = odoo_datos_dc77['E' + str(k)]
+                    if codNac.value == codCta77.value:
+                        template.cell(row=row, column=col + 1, value=odoo_datos_bn['D' + str(i)].value)
+                        template.cell(row=row, column=col + 2, value=odoo_datos_dc77['D' + str(k)].value)
+                        template.cell(row=row, column=col + 3, value='776000')
+                        template.cell(row=row, column=col + 4, value=odoo_datos_bn['E' + str(i)].value)
+                        template.cell(row=row, column=col + 5, value=odoo_datos_bn['G' + str(i)].value)
+                        template.cell(row=row, column=col + 6, value=odoo_datos_dc77['E' + str(k)].value)
+                        template.cell(row=row, column=col + 7, value=odoo_datos_dc77['H' + str(k)].value)
+                        row += 1
+                        break
+
+        # Guardo el archivo
+        wb_plantilla.save(filename='/Users/villarreal/Desktop/Output.xlsx')
+
+        #TODO: Borrar los archivos de entrada
+
         return send_file('uploads_folder/Output.xlsx', as_attachment=True)
 
 ## on a POST request of data 
