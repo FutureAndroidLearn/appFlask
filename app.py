@@ -97,18 +97,14 @@ def file_process():
 
     if os.path.exists('/home/ubuntu/appFlask/uploads_folder/difCambioCta77.xlsx'):
         os.remove('/home/ubuntu/appFlask/uploads_folder/difCambioCta77.xlsx')
-    
+
     # Guardo el archivo
     wb_plantilla.save(filename='/home/ubuntu/appFlask/uploads_folder/Informe.xlsx')
 
 @app.route('/download', methods=['GET'])
 def download_file():
     if request.method == 'GET':
-        #TODO: Revisar extensiones y nombres de los archivos exsitentes
-        #TODO: Ejecutar el algoritmo
         #TODO:Revisar como se pueden tomar los datos siempre de la primera hoja sin necesidad de ponerle un nombre para referenciarla aquí
-        #TODO: Borrar los archivos de entrada
-
         file_process()
         return send_file('uploads_folder/Informe.xlsx', as_attachment=True, cache_timeout=0)
 
@@ -148,7 +144,7 @@ def upload_file():
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
                 print(filename)
-                if (filename == 'bancoNación.xlsx'):
+                if (filename == 'bancoNacion.xlsx'):
                     file.save(os.path.join(upload_dest, filename))
                 elif (filename == 'difCambioCta67.xlsx'):
                     file.save(os.path.join(upload_dest, filename))
