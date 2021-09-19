@@ -138,8 +138,13 @@ def upload_file():
         for file in files:
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
-                file.save(os.path.join( upload_dest, filename))
+                if (filename != 'bancoNación.xlsx') or (filename != 'difCambioCta67.xlsx') or \
+                        (filename != 'difCambioCta77.xlsx'):
+                    flash('No files found, try again.')
+                    return redirect(request.url)
 
+                else:
+                    file.save(os.path.join( upload_dest, filename))
         flash('Files uploaded')
         return redirect('/upload')
 
