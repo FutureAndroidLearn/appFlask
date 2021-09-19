@@ -1,5 +1,5 @@
 import sys,os,re   
-from flask import Flask, flash, request, redirect, render_template, send_file
+from flask import Flask, flash, request, redirect, render_template, send_file, send_from_directory
 from werkzeug.utils import secure_filename
 
 from config_simple import *
@@ -30,7 +30,7 @@ def upload_form():
 def download_file():
     if request.method == 'GET':
         try:
-            return send_file("uploads_folder/Output.xlsx",as_attachment=True,mimetype="xlsx")
+            return send_from_directory(app.config["upload_dest"],filename="Output.xlsx", as_attachment=True)
         except FileNotFoundError:
             abort(404)
 
