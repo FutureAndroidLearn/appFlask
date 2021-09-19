@@ -35,12 +35,12 @@ def download_file():
         #TODO: Ejecutar el algoritmo
 
         # Archivos de Excel desde donde extraeran los datos
-        odoo_bn = 'upload/bancoNacion.xlsx'
-        odoo_dc67 = 'upload/difCambioCta67.xlsx'
-        odoo_dc77 = 'upload/difCambioCta77.xlsx'
+        odoo_bn = 'uploads_folder/bancoNacion.xlsx'
+        odoo_dc67 = 'uploads_folder/difCambioCta67.xlsx'
+        odoo_dc77 = 'uploads_folder/difCambioCta77.xlsx'
 
         # Archivo con el formato de la plantilla de salida
-        plantilla = '/Users/villarreal/Desktop/plantilla.xlsx'
+        plantilla = 'uploads_folder/plantilla.xlsx'
 
         wb_odoo_bn = openpyxl.load_workbook(odoo_bn)
         wb_odoo_dc67 = openpyxl.load_workbook(odoo_dc67)
@@ -95,11 +95,11 @@ def download_file():
                         break
 
         # Guardo el archivo
-        wb_plantilla.save(filename='/Users/villarreal/Desktop/Output.xlsx')
+        wb_plantilla.save(filename='uploads_folder/Output.xlsx')
 
         #TODO: Borrar los archivos de entrada
 
-        return send_file('uploads_folder/Output.xlsx', as_attachment=True)
+        return send_file('uploads_folder/Output.xlsx', as_attachment=True, cache_timeout=0)
 
 ## on a POST request of data 
 @app.route('/upload', methods=['POST'])
