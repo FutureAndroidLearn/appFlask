@@ -88,6 +88,16 @@ def file_process():
                     row += 1
                     break
 
+    #Elimino los archivos utilizados en el informe
+    if os.path.exists('/home/ubuntu/appFlask/uploads_folder/bancoNacion.xlsx'):
+        os.remove('/home/ubuntu/appFlask/uploads_folder/bancoNacion.xlsx')
+
+    if os.path.exists('/home/ubuntu/appFlask/uploads_folder/difCambioCta67.xlsx'):
+        os.remove('/home/ubuntu/appFlask/uploads_folder/difCambioCta67.xlsx')
+
+    if os.path.exists('/home/ubuntu/appFlask/uploads_folder/difCambioCta77.xlsx'):
+        os.remove('/home/ubuntu/appFlask/uploads_folder/difCambioCta77.xlsx')
+    
     # Guardo el archivo
     wb_plantilla.save(filename='/home/ubuntu/appFlask/uploads_folder/Informe.xlsx')
 
