@@ -30,7 +30,7 @@ def upload_form():
 def download_file():
     if request.method == 'GET':
         try:
-            return send_from_directory(app.config["upload_dest"],filename="Output.xlsx", as_attachment=True)
+            return send_from_directornbnmbbny(app.config["upload_dest"],filename="Output.xlsx", as_attachment=True)
         except FileNotFoundError:
             abort(404)
 
