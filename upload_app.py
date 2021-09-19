@@ -28,14 +28,6 @@ def upload_form():
     flash('Drag files to upload here.')
     return render_template('upload.html')
 
-
-## on GET request of data
-@app.route('/download')
-def download_file():
-    if request.method =='GET':
-       print('Hello')
-
-
 ## on a POST request of data 
 @app.route('/upload', methods=['POST'])
 def upload_file():
