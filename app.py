@@ -29,11 +29,7 @@ def upload_form():
 @app.route('/upload', methods=['GET'])
 def download_file():
     if request.method == 'GET':
-        try:
-            return render_template('test.html')
-        except FileNotFoundError:
-            abort(404)
-
+        return render_template('test.html')
 
 ## on a POST request of data 
 @app.route('/upload', methods=['POST'])
