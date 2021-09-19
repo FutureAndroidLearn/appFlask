@@ -30,7 +30,7 @@ def upload_form():
 
 def file_process():
     # Archivos de Excel desde donde extraeran los datos
-    odoo_bn = '/uploads_folder/bancoNacion.xlsx'
+    odoo_bn = '/home/ubuntu/appFlask/uploads_folder/bancoNacion.xlsx'
     odoo_dc67 = '/uploads_folder/difCambioCta67.xlsx'
     odoo_dc77 = '/uploads_folder/difCambioCta77.xlsx'
 
