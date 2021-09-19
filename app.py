@@ -141,8 +141,10 @@ def upload_file():
                 if (filename != 'bancoNación.xlsx') or (filename != 'difCambioCta67.xlsx') or \
                         (filename != 'difCambioCta77.xlsx'):
                     flash('No files found, try again.')
+                    print('if')
                     return redirect(request.url)
                 else:
+                    print('else')
                     file.save(os.path.join( upload_dest, filename))
         flash('Files uploaded')
         return redirect('/upload')
