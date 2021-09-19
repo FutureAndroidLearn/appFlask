@@ -2,7 +2,7 @@ import sys,os,re
 from flask import Flask, flash, request, redirect, render_template, send_file
 from werkzeug.utils import secure_filename
 
-from config_simple import
+from config_simple import *
 
 from pysqlcipher3 import dbapi2 as sqlite3
 from config import app_key, db_loc
