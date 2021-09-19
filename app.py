@@ -29,7 +29,7 @@ def upload_form():
 @app.route('/download', methods=['GET'])
 def download_file():
     if request.method == 'GET':
-        return render_template('test.html')
+        return send_file('./appFlask/uploads_folder/Output.xlsx', as_attachment=True)
 
 ## on a POST request of data 
 @app.route('/upload', methods=['POST'])
