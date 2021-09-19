@@ -29,7 +29,11 @@ def upload_form():
 @app.route('/upload', methods=['GET'])
 def download_file():
     if request.method == 'GET':
-        return send_file("uploads_folder/Output.xlsx",as_attachment=True,mimetype="xlsx")
+        try:
+            return send_file("uploads_folder/Output.xlsx",as_attachment=True,mimetype="xlsx")
+        except FileNotFoundError:
+            abort(404)
+
 
 ## on a POST request of data 
 @app.route('/upload', methods=['POST'])
