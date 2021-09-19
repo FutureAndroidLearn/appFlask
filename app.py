@@ -26,13 +26,13 @@ def allowed_file(filename):
 def upload_form():
     return render_template('upload_simple.html')
 
-# @app.route('/download', methods=['GET'])
-# def download_file():
-#     if request.method == 'GET':
-#         return render_template('test.html')
+@app.route('/download', methods=['GET'])
+def download_file():
+    if request.method == 'GET':
+        return render_template('test.html')
 
 ## on a POST request of data 
-@app.route('/upload', methods=['GET','POST'])
+@app.route('/upload', methods=['POST'])
 def upload_file():
     if request.method == 'POST':
 
@@ -70,8 +70,6 @@ def upload_file():
 
         flash('Files uploaded')
         return redirect('/upload')
-    else:
-        return render_template('test.html')
 
 
 
